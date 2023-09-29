@@ -3,17 +3,24 @@ package org.java.calculator;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import org.junit.jupiter.api.BeforeEach;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class CalculatorTest {
 	
-	private Calculator calcTest;
+	static private Calculator calcTest;
 
-	@BeforeEach 
-	public void beforeEach() {
+	@BeforeAll 
+	static public void instantiator() {
 		calcTest = new Calculator();
+	}
+	
+	@AfterAll
+	static public void releaser() {
+		calcTest = null;
 	}
 	
 	@Test
@@ -66,5 +73,7 @@ public class CalculatorTest {
 		assertDoesNotThrow(() -> calcTest.divide(3F, 2F),
 				"A regular division must not throw an Exception");
 	}
+	
+	
 	
 }
